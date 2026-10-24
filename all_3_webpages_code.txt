@@ -1,0 +1,1544 @@
+COMBINED SOURCE CODE FOR THREE WEBPAGES
+=======================================
+This file combines the original HTML source files for reference.
+Each webpage is separated below. Save each section as its original .html
+filename to run it as a separate webpage.
+
+
+==============================================================================
+WEBPAGE 1: SHOP EASY E-COMMERCE STORE
+==============================================================================
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Online Shopping</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        /* Navigation */
+        header {
+            background: #232f3e;
+            color: white;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ffcc70;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        nav a:hover {
+            color: #ffcc70;
+        }
+
+        .cart {
+            background: #ff9900;
+            color: #222;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Promotional banner */
+        .banner {
+            background: linear-gradient(120deg, #0077b6, #00b4d8);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .banner h2 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 18px;
+        }
+
+        .banner a {
+            display: inline-block;
+            background: #ffcc70;
+            color: #222;
+            padding: 12px 22px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Search */
+        .search {
+            text-align: center;
+            padding: 25px 15px 0;
+        }
+
+        .search input {
+            width: 80%;
+            max-width: 450px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        /* Product section */
+        section {
+            padding: 30px 5%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .filters {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .filters button {
+            background: #232f3e;
+            color: white;
+            border: none;
+            padding: 10px 17px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filters button:hover,
+        .filters button.active {
+            background: #0077b6;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px #00000010;
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+        }
+
+        .discount {
+            display: inline-block;
+            background: #e63946;
+            color: white;
+            padding: 5px 9px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .product h3 {
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 14px;
+            min-height: 40px;
+        }
+
+        .rating {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+
+        .price {
+            color: #087f5b;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .old-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        .product button {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            background: #ff9900;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .product button:hover {
+            background: #f5b342;
+        }
+
+        .details-btn {
+            background: #0077b6 !important;
+            color: white;
+        }
+
+        /* Shopping cart */
+        #cart-section {
+            background: white;
+            border-radius: 10px;
+            margin: 20px 5%;
+            padding: 20px;
+        }
+
+        #cart-items {
+            line-height: 2;
+        }
+
+        /* Footer */
+        footer {
+            background: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .banner h2 {
+                font-size: 27px;
+            }
+
+            .product {
+                max-width: 400px;
+                width: 100%;
+                box-sizing: border-box;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+    <header>
+        <h1>ShopEasy</h1>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#offers">Offers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="cart" onclick="showCart()">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </button>
+    </header>
+
+    <!-- Promotional banner -->
+    <div class="banner" id="home">
+        <h2>Big Shopping Festival!</h2>
+        <p>Discover amazing products with discounts up to 50%.</p>
+        <a href="#products">Shop Now</a>
+    </div>
+
+    <!-- Search box -->
+    <div class="search">
+        <input type="text" id="search"
+               placeholder="Search products..."
+               oninput="searchProducts()">
+    </div>
+
+    <!-- Product catalog -->
+    <section id="products">
+        <h2>Our Products</h2>
+
+        <div class="filters">
+            <button class="active"
+                    onclick="filterProducts('All', this)">All</button>
+            <button onclick="filterProducts('Electronics', this)">Electronics</button>
+            <button onclick="filterProducts('Fashion', this)">Fashion</button>
+            <button onclick="filterProducts('Home', this)">Home</button>
+            <button onclick="filterProducts('Accessories', this)">Accessories</button>
+        </div>
+
+        <div class="products">
+
+            <div class="product" data-category="Electronics">
+                <span class="discount">20% OFF</span>
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80"
+                     alt="Laptop">
+                <h3>Laptop</h3>
+                <p class="description">Powerful laptop for work and study.</p>
+                <p class="rating">★ 4.5/5</p>
+                <p class="price">₹40,000</p>
+                <p class="old-price">₹50,000</p>
+                <button onclick="addToCart('Laptop', 40000)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Laptop', 'Electronics', 'Powerful laptop for work and study.', '₹40,000')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Electronics">
+                <span class="discount">15% OFF</span>
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80"
+                     alt="Smartphone">
+                <h3>Smartphone</h3>
+                <p class="description">A stylish phone with a clear display.</p>
+                <p class="rating">★ 4.3/5</p>
+                <p class="price">₹17,000</p>
+                <p class="old-price">₹20,000</p>
+                <button onclick="addToCart('Smartphone', 17000)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Smartphone', 'Electronics', 'A stylish phone with a clear display.', '₹17,000')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Fashion">
+                <span class="discount">25% OFF</span>
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80"
+                     alt="T-shirt">
+                <h3>Cotton T-Shirt</h3>
+                <p class="description">Comfortable everyday casual wear.</p>
+                <p class="rating">★ 4.2/5</p>
+                <p class="price">₹750</p>
+                <p class="old-price">₹1,000</p>
+                <button onclick="addToCart('Cotton T-Shirt', 750)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Cotton T-Shirt', 'Fashion', 'Comfortable everyday casual wear.', '₹750')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Fashion">
+                <span class="discount">30% OFF</span>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80"
+                     alt="Sports shoes">
+                <h3>Sports Shoes</h3>
+                <p class="description">Lightweight shoes for active lifestyles.</p>
+                <p class="rating">★ 4.6/5</p>
+                <p class="price">₹1,400</p>
+                <p class="old-price">₹2,000</p>
+                <button onclick="addToCart('Sports Shoes', 1400)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Sports Shoes', 'Fashion', 'Lightweight shoes for active lifestyles.', '₹1,400')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Home">
+                <span class="discount">10% OFF</span>
+                <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=500&q=80"
+                     alt="Table lamp">
+                <h3>Table Lamp</h3>
+                <p class="description">Modern lighting for your study table.</p>
+                <p class="rating">★ 4.1/5</p>
+                <p class="price">₹900</p>
+                <p class="old-price">₹1,000</p>
+                <button onclick="addToCart('Table Lamp', 900)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Table Lamp', 'Home', 'Modern lighting for your study table.', '₹900')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Home">
+                <span class="discount">20% OFF</span>
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80"
+                     alt="Home furniture">
+                <h3>Home Decor</h3>
+                <p class="description">Give your living space a fresh look.</p>
+                <p class="rating">★ 4.4/5</p>
+                <p class="price">₹1,600</p>
+                <p class="old-price">₹2,000</p>
+                <button onclick="addToCart('Home Decor', 1600)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Home Decor', 'Home', 'Give your living space a fresh look.', '₹1,600')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Accessories">
+                <span class="discount">15% OFF</span>
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80"
+                     alt="Headphones">
+                <h3>Headphones</h3>
+                <p class="description">Enjoy music with clear sound quality.</p>
+                <p class="rating">★ 4.5/5</p>
+                <p class="price">₹1,700</p>
+                <p class="old-price">₹2,000</p>
+                <button onclick="addToCart('Headphones', 1700)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Headphones', 'Accessories', 'Enjoy music with clear sound quality.', '₹1,700')">
+                    View Details
+                </button>
+            </div>
+
+            <div class="product" data-category="Accessories">
+                <span class="discount">10% OFF</span>
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80"
+                     alt="Smart watch">
+                <h3>Smart Watch</h3>
+                <p class="description">Track activity and stay connected.</p>
+                <p class="rating">★ 4.3/5</p>
+                <p class="price">₹2,700</p>
+                <p class="old-price">₹3,000</p>
+                <button onclick="addToCart('Smart Watch', 2700)">Add to Cart</button>
+                <button class="details-btn"
+                        onclick="showDetails('Smart Watch', 'Accessories', 'Track activity and stay connected.', '₹2,700')">
+                    View Details
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Shopping cart -->
+    <section id="offers">
+        <h2>Special Offers</h2>
+        <div class="banner">
+            <h2>Weekend Sale</h2>
+            <p>Save more on your favorite products!</p>
+            <a href="#products">Explore Offers</a>
+        </div>
+    </section>
+
+    <section id="cart-section">
+        <h2>Your Shopping Cart</h2>
+        <div id="cart-items">Your cart is empty.</div>
+        <h3 id="cart-total">Total: ₹0</h3>
+        <button class="cart" onclick="clearCart()">Clear Cart</button>
+    </section>
+
+    <!-- Product details -->
+    <section id="details">
+        <h2>Product Details</h2>
+        <div class="product" style="max-width:500px; margin:auto;">
+            <h3 id="detail-name">Select a product</h3>
+            <p id="detail-category">Category: -</p>
+            <p id="detail-description">Product description will appear here.</p>
+            <p class="price" id="detail-price">Price: -</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>ShopEasy</h3>
+        <p>Your favorite products at affordable prices.</p>
+        <p>Email: support@shopeasy.example</p>
+        <p>© 2026 ShopEasy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        // Filter products by category
+        function filterProducts(category, button) {
+            document.querySelectorAll(".filters button")
+                .forEach(btn => btn.classList.remove("active"));
+
+            button.classList.add("active");
+
+            document.querySelectorAll(".product[data-category]")
+                .forEach(product => {
+                    product.style.display =
+                        category === "All" ||
+                        product.dataset.category === category
+                        ? "" : "none";
+                });
+
+            document.getElementById("search").value = "";
+        }
+
+        // Search products
+        function searchProducts() {
+            const search = document.getElementById("search")
+                .value.toLowerCase();
+
+            document.querySelectorAll(".product[data-category]")
+                .forEach(product => {
+                    product.style.display =
+                        product.innerText.toLowerCase().includes(search)
+                        ? "" : "none";
+                });
+
+            document.querySelectorAll(".filters button")
+                .forEach(btn => btn.classList.remove("active"));
+        }
+
+        // Add product to cart
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            updateCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            document.getElementById("cart-count").textContent = cart.length;
+
+            const cartItems = document.getElementById("cart-items");
+            const totalElement = document.getElementById("cart-total");
+
+            if (cart.length === 0) {
+                cartItems.textContent = "Your cart is empty.";
+                totalElement.textContent = "Total: ₹0";
+                return;
+            }
+
+            cartItems.innerHTML = "";
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+
+                const row = document.createElement("p");
+                row.textContent = item.name + " - ₹" +
+                    item.price.toLocaleString("en-IN") +
+                    " ";
+
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.onclick = function() {
+                    cart.splice(index, 1);
+                    updateCart();
+                };
+
+                row.appendChild(removeButton);
+                cartItems.appendChild(row);
+            });
+
+            totalElement.textContent =
+                "Total: ₹" + total.toLocaleString("en-IN");
+        }
+
+        // Open cart section
+        function showCart() {
+            document.getElementById("cart-section")
+                .scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Clear cart
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+
+        // Show product details
+        function showDetails(name, category, description, price) {
+            document.getElementById("detail-name").textContent = name;
+            document.getElementById("detail-category").textContent =
+                "Category: " + category;
+            document.getElementById("detail-description").textContent =
+                description;
+            document.getElementById("detail-price").textContent = price;
+
+            document.getElementById("details")
+                .scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+
+</body>
+</html>
+
+
+==============================================================================
+WEBPAGE 2: ELECTROMART ELECTRONICS STORE
+==============================================================================
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroMart - Electronics Catalog</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            background: #14213d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #243b63;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .hero {
+            background: #dbeafe;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .hero h2 {
+            color: #14213d;
+        }
+
+        section {
+            padding: 30px 5%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #14213d;
+        }
+
+        .filters {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .filters button {
+            margin: 5px;
+            padding: 10px 18px;
+            background: #243b63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filters button:hover,
+        .filters button.active {
+            background: #0077b6;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px #0001;
+        }
+
+        .product img {
+            width: 100%;
+            height: 170px;
+            object-fit: contain;
+        }
+
+        .discount {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+            color: #087f5b;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+            font-size: 14px;
+        }
+
+        .product button,
+        .detail button {
+            background: #0077b6;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover,
+        .detail button:hover {
+            background: #005f8f;
+        }
+
+        .detail {
+            background: white;
+            max-width: 650px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #0001;
+        }
+
+        .detail h3 {
+            color: #0077b6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 13px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #243b63;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #14213d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 550px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            section {
+                padding: 25px 4%;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>⚡ ElectroMart</h1>
+        <p>Your One-Stop Electronics Store</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#comparison">Compare</a>
+        <a href="#details">Product Details</a>
+    </nav>
+
+    <div class="hero" id="home">
+        <h2>Discover the Latest Electronics</h2>
+        <p>Laptops, smartphones, accessories and smart devices at great prices.</p>
+    </div>
+
+    <!-- Product Catalog -->
+    <section id="products">
+        <h2>Our Products</h2>
+
+        <div class="filters">
+            <button class="active" onclick="filterProducts('All', this)">All</button>
+            <button onclick="filterProducts('Laptop', this)">Laptops</button>
+            <button onclick="filterProducts('Smartphone', this)">Smartphones</button>
+            <button onclick="filterProducts('Accessory', this)">Accessories</button>
+            <button onclick="filterProducts('Smart Device', this)">Smart Devices</button>
+        </div>
+
+        <div class="products">
+
+            <div class="product" data-category="Laptop">
+                <span class="discount">20% OFF</span>
+                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80"
+                     alt="Laptop">
+                <h3>HP Pavilion Laptop</h3>
+                <p>Intel Core i5 | 16GB RAM | 512GB SSD</p>
+                <p class="price">₹59,999</p>
+                <p class="old-price">₹74,999</p>
+                <button onclick="showDetails('HP Pavilion Laptop')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Laptop">
+                <span class="discount">15% OFF</span>
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=80"
+                     alt="Apple laptop">
+                <h3>Apple MacBook</h3>
+                <p>Apple Silicon | 16GB RAM | 512GB SSD</p>
+                <p class="price">₹99,999</p>
+                <p class="old-price">₹1,17,999</p>
+                <button onclick="showDetails('Apple MacBook')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Smartphone">
+                <span class="discount">10% OFF</span>
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80"
+                     alt="Smartphone">
+                <h3>Samsung Galaxy</h3>
+                <p>128GB Storage | AMOLED Display</p>
+                <p class="price">₹29,999</p>
+                <p class="old-price">₹33,333</p>
+                <button onclick="showDetails('Samsung Galaxy')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Smartphone">
+                <span class="discount">12% OFF</span>
+                <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=500&q=80"
+                     alt="iPhone">
+                <h3>Apple iPhone</h3>
+                <p>128GB Storage | OLED Display</p>
+                <p class="price">₹69,999</p>
+                <p class="old-price">₹79,545</p>
+                <button onclick="showDetails('Apple iPhone')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Accessory">
+                <span class="discount">25% OFF</span>
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80"
+                     alt="Wireless headphones">
+                <h3>Wireless Headphones</h3>
+                <p>Bluetooth | Noise Isolation</p>
+                <p class="price">₹2,999</p>
+                <p class="old-price">₹3,999</p>
+                <button onclick="showDetails('Wireless Headphones')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Accessory">
+                <span class="discount">20% OFF</span>
+                <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=500&q=80"
+                     alt="Phone charger">
+                <h3>Fast Charger</h3>
+                <p>USB-C | Fast Charging</p>
+                <p class="price">₹799</p>
+                <p class="old-price">₹999</p>
+                <button onclick="showDetails('Fast Charger')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Smart Device">
+                <span class="discount">15% OFF</span>
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80"
+                     alt="Smart watch">
+                <h3>Smart Watch</h3>
+                <p>Fitness Tracking | Heart Rate</p>
+                <p class="price">₹4,999</p>
+                <p class="old-price">₹5,999</p>
+                <button onclick="showDetails('Smart Watch')">View Details</button>
+            </div>
+
+            <div class="product" data-category="Smart Device">
+                <span class="discount">10% OFF</span>
+                <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=500&q=80"
+                     alt="Bluetooth speaker">
+                <h3>Smart Speaker</h3>
+                <p>Wireless Audio | Voice Assistant</p>
+                <p class="price">₹3,599</p>
+                <p class="old-price">₹3,999</p>
+                <button onclick="showDetails('Smart Speaker')">View Details</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Product Comparison -->
+    <section id="comparison">
+        <h2>Product Comparison</h2>
+
+        <table>
+            <tr>
+                <th>Specification</th>
+                <th>HP Pavilion</th>
+                <th>MacBook</th>
+                <th>Samsung Galaxy</th>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>Laptop</td>
+                <td>Laptop</td>
+                <td>Smartphone</td>
+            </tr>
+            <tr>
+                <td>Processor</td>
+                <td>Intel Core i5</td>
+                <td>Apple Silicon</td>
+                <td>Octa-core</td>
+            </tr>
+            <tr>
+                <td>Memory</td>
+                <td>16GB RAM</td>
+                <td>16GB RAM</td>
+                <td>8GB RAM</td>
+            </tr>
+            <tr>
+                <td>Storage</td>
+                <td>512GB SSD</td>
+                <td>512GB SSD</td>
+                <td>128GB</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>₹59,999</td>
+                <td>₹99,999</td>
+                <td>₹29,999</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Product Details -->
+    <section id="details">
+        <h2>Product Details</h2>
+
+        <div class="detail" id="detail-box">
+            <h3>HP Pavilion Laptop</h3>
+            <p><strong>Category:</strong> Laptop</p>
+            <p><strong>Processor:</strong> Intel Core i5</p>
+            <p><strong>RAM:</strong> 16GB</p>
+            <p><strong>Storage:</strong> 512GB SSD</p>
+            <p><strong>Display:</strong> Full HD</p>
+            <p><strong>Price:</strong> ₹59,999</p>
+            <p>Suitable for study, office work and everyday computing.</p>
+            <button onclick="showMessage()">Enquire Now</button>
+        </div>
+
+        <p id="message"></p>
+    </section>
+
+    <footer>
+        <h3>ElectroMart</h3>
+        <p>Quality Electronics at Affordable Prices</p>
+        <p>© 2026 ElectroMart. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Filter products by category
+        function filterProducts(category, button) {
+            const products = document.querySelectorAll(".product");
+            const buttons = document.querySelectorAll(".filters button");
+
+            buttons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            products.forEach(product => {
+                if (category === "All" ||
+                    product.dataset.category === category) {
+                    product.style.display = "";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+
+        // Product specifications
+        const productData = {
+            "HP Pavilion Laptop": [
+                "Laptop", "Intel Core i5", "16GB", "512GB SSD",
+                "Full HD", "₹59,999",
+                "Suitable for study, office work and everyday computing."
+            ],
+            "Apple MacBook": [
+                "Laptop", "Apple Silicon", "16GB", "512GB SSD",
+                "Retina display", "₹99,999",
+                "Designed for productivity, creative work and portability."
+            ],
+            "Samsung Galaxy": [
+                "Smartphone", "Octa-core", "8GB", "128GB",
+                "AMOLED", "₹29,999",
+                "A smartphone for communication, entertainment and daily use."
+            ],
+            "Apple iPhone": [
+                "Smartphone", "Apple processor", "8GB", "128GB",
+                "OLED", "₹69,999",
+                "A smartphone with a premium design and modern features."
+            ],
+            "Wireless Headphones": [
+                "Accessory", "Bluetooth", "N/A", "N/A",
+                "Over-ear audio", "₹2,999",
+                "Wireless headphones for music, calls and entertainment."
+            ],
+            "Fast Charger": [
+                "Accessory", "USB-C", "N/A", "N/A",
+                "Fast charging", "₹799",
+                "A compact charger for compatible electronic devices."
+            ],
+            "Smart Watch": [
+                "Smart Device", "Smart processor", "N/A", "N/A",
+                "Fitness display", "₹4,999",
+                "Tracks daily activity and compatible health metrics."
+            ],
+            "Smart Speaker": [
+                "Smart Device", "Voice assistant", "N/A", "N/A",
+                "Wireless audio", "₹3,599",
+                "A speaker for wireless music and compatible voice features."
+            ]
+        };
+
+        // Display selected product details
+        function showDetails(name) {
+            const data = productData[name];
+
+            document.getElementById("detail-box").innerHTML = `
+                <h3>${name}</h3>
+                <p><strong>Category:</strong> ${data[0]}</p>
+                <p><strong>Processor / Technology:</strong> ${data[1]}</p>
+                <p><strong>RAM:</strong> ${data[2]}</p>
+                <p><strong>Storage:</strong> ${data[3]}</p>
+                <p><strong>Display / Feature:</strong> ${data[4]}</p>
+                <p><strong>Price:</strong> ${data[5]}</p>
+                <p>${data[6]}</p>
+                <button onclick="showMessage()">Enquire Now</button>
+            `;
+
+            document.getElementById("details").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        // Basic enquiry message
+        function showMessage() {
+            document.getElementById("message").textContent =
+                "Thank you for your interest! Please contact our store for availability.";
+        }
+    </script>
+
+</body>
+</html>
+
+
+==============================================================================
+WEBPAGE 3: GRAND PALACE HOTEL WEBSITE
+==============================================================================
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Palace Hotel</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #163a45;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #245563;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .hero {
+            background-image: linear-gradient(#0006, #0006),
+            url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 38px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        section {
+            padding: 35px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #163a45;
+        }
+
+        .rooms {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .room {
+            background-color: white;
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px #0002;
+        }
+
+        .room img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding: 18px;
+        }
+
+        .room-info h3 {
+            color: #163a45;
+        }
+
+        .price {
+            color: #087f5b;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #087f8c;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #075e66;
+        }
+
+        .room button {
+            width: 100%;
+        }
+
+        .facilities {
+            background-color: #e4f0f2;
+            text-align: center;
+        }
+
+        .facilities span {
+            display: inline-block;
+            background: white;
+            padding: 15px;
+            margin: 8px;
+            border-radius: 8px;
+        }
+
+        .booking {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #0002;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .booking button {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+            margin-top: 15px;
+        }
+
+        footer {
+            background-color: #163a45;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            .room {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .booking {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🏨 Grand Palace Hotel</h1>
+        <p>Your comfort is our priority</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#booking">Book Now</a>
+    </nav>
+
+    <div class="hero" id="home">
+        <h2>Welcome to Grand Palace Hotel</h2>
+        <p>Enjoy luxury, comfort and unforgettable hospitality.</p>
+        <a href="#booking">
+            <button>Book Your Stay</button>
+        </a>
+    </div>
+
+    <!-- Room Categories -->
+    <section id="rooms">
+        <h2>Our Rooms</h2>
+
+        <div class="rooms">
+
+            <div class="room">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=700&q=80"
+                     alt="Standard hotel room">
+
+                <div class="room-info">
+                    <h3>Standard Room</h3>
+                    <p>A comfortable room for solo travelers or couples.</p>
+                    <p>🛏️ Double Bed | 📺 TV | ❄️ AC</p>
+                    <p class="price">₹2,000 / night</p>
+                    <button onclick="selectRoom('Standard Room')">
+                        Book Room
+                    </button>
+                </div>
+            </div>
+
+            <div class="room">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80"
+                     alt="Deluxe hotel room">
+
+                <div class="room-info">
+                    <h3>Deluxe Room</h3>
+                    <p>A spacious room with elegant interiors and extra comfort.</p>
+                    <p>🛏️ King Bed | 📶 Wi-Fi | 🚿 Hot Water</p>
+                    <p class="price">₹3,500 / night</p>
+                    <button onclick="selectRoom('Deluxe Room')">
+                        Book Room
+                    </button>
+                </div>
+            </div>
+
+            <div class="room">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80"
+                     alt="Luxury hotel suite">
+
+                <div class="room-info">
+                    <h3>Luxury Suite</h3>
+                    <p>A premium suite for a relaxing and memorable stay.</p>
+                    <p>🛏️ King Bed | 🛋️ Lounge | 🍽️ Room Service</p>
+                    <p class="price">₹5,500 / night</p>
+                    <button onclick="selectRoom('Luxury Suite')">
+                        Book Room
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Hotel Facilities -->
+    <section class="facilities" id="facilities">
+        <h2>Our Facilities</h2>
+
+        <span>📶 Free Wi-Fi</span>
+        <span>🏊 Swimming Pool</span>
+        <span>🍽️ Restaurant</span>
+        <span>🚗 Free Parking</span>
+        <span>❄️ Air Conditioning</span>
+        <span>🛎️ 24/7 Room Service</span>
+    </section>
+
+    <!-- Reservation Form -->
+    <section id="booking">
+        <h2>Reserve Your Room</h2>
+
+        <form class="booking" id="bookingForm">
+
+            <label for="name">Full Name</label>
+            <input type="text" id="name"
+                   placeholder="Enter your name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email"
+                   placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone"
+                   placeholder="Enter phone number" required>
+
+            <label for="roomType">Room Category</label>
+            <select id="roomType" required>
+                <option value="">Select a room</option>
+                <option value="Standard Room">Standard Room - ₹2,000</option>
+                <option value="Deluxe Room">Deluxe Room - ₹3,500</option>
+                <option value="Luxury Suite">Luxury Suite - ₹5,500</option>
+            </select>
+
+            <label for="checkin">Check-in Date</label>
+            <input type="date" id="checkin" required>
+
+            <label for="checkout">Check-out Date</label>
+            <input type="date" id="checkout" required>
+
+            <label for="guests">Number of Guests</label>
+            <select id="guests" required>
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+            </select>
+
+            <label for="requests">Special Requests</label>
+            <textarea id="requests" rows="3"
+                      placeholder="Any special requirements?"></textarea>
+
+            <p id="totalPrice"></p>
+
+            <button type="submit">Confirm Reservation</button>
+
+            <p id="message" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <footer>
+        <h3>Grand Palace Hotel</h3>
+        <p>Address: Main Road, City Center</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>© 2026 Grand Palace Hotel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Room prices per night
+        const prices = {
+            "Standard Room": 2000,
+            "Deluxe Room": 3500,
+            "Luxury Suite": 5500
+        };
+
+        const checkin = document.getElementById("checkin");
+        const checkout = document.getElementById("checkout");
+        const roomType = document.getElementById("roomType");
+
+        // Set today's date as the earliest check-in
+        const today = new Date();
+        const todayString =
+            today.getFullYear() + "-" +
+            String(today.getMonth() + 1).padStart(2, "0") + "-" +
+            String(today.getDate()).padStart(2, "0");
+
+        checkin.min = todayString;
+        checkout.min = todayString;
+
+        // Select a room from its card
+        function selectRoom(room) {
+            roomType.value = room;
+            document.getElementById("booking").scrollIntoView({
+                behavior: "smooth"
+            });
+            calculatePrice();
+        }
+
+        // Update checkout's earliest allowed date
+        checkin.addEventListener("change", function() {
+            checkout.min = checkin.value;
+
+            if (checkout.value && checkout.value <= checkin.value) {
+                checkout.value = "";
+            }
+
+            calculatePrice();
+        });
+
+        checkout.addEventListener("change", calculatePrice);
+        roomType.addEventListener("change", calculatePrice);
+
+        // Calculate estimated total
+        function calculatePrice() {
+            const room = roomType.value;
+            const start = new Date(checkin.value + "T00:00:00");
+            const end = new Date(checkout.value + "T00:00:00");
+
+            if (room && checkin.value && checkout.value && end > start) {
+                const nights = Math.round(
+                    (end - start) / (1000 * 60 * 60 * 24)
+                );
+
+                const total = nights * prices[room];
+
+                document.getElementById("totalPrice").textContent =
+                    "Estimated Total: ₹" + total.toLocaleString("en-IN") +
+                    " for " + nights + " night(s)";
+            } else {
+                document.getElementById("totalPrice").textContent = "";
+            }
+        }
+
+        // Demonstration reservation form
+        document.getElementById("bookingForm").addEventListener(
+            "submit", function(event) {
+                event.preventDefault();
+
+                if (checkout.value <= checkin.value) {
+                    document.getElementById("message").textContent =
+                        "Please select a checkout date after check-in.";
+                    return;
+                }
+
+                const name = document.getElementById("name").value;
+
+                document.getElementById("message").textContent =
+                    "Thank you, " + name +
+                    "! Your reservation request has been recorded in this demo.";
+
+                this.reset();
+                checkout.min = todayString;
+                document.getElementById("totalPrice").textContent = "";
+            }
+        );
+    </script>
+
+</body>
+</html>
